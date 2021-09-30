@@ -1,0 +1,6 @@
+* add the number of bids option. done.
+* Create the ui for each post. done.
+
+* Create dashboards,
+* Add bidding option.
+* separate user and seller options.

@@ -1,0 +1,63 @@
+<%- include('includes/navbar') %>
+    <% if(typeof error!=='undefined') {%>
+        <%= error %>
+            <% } %>
+                <form action="/user/register" name="form" method="POST" id="registration-form">
+
+                    <input name="fullname" type="text" id="fullname" placeholder="Full name" autocomplete="off" maxlength=30 required>
+
+                    <input type="text" name="username" id="username" placeholder="username" pattern="[a-zA-Z0-9]{3,12}" required>
+                    <input name="phone" type="tel" id="phone" placeholder="888888888" pattern="[0-9]{10}" autocomplete="off" maxlength="12" required>
+                    <input type="email" name="email" id="email" placeholder="email(optional)">
+                    <input name="password" type="password" id="password1" placeholder="Four Digit Pin" autocomplete="off" required>
+
+                    <h1> Enter Your Role</h1>
+                    <label>
+        <input type="radio" name="role" value="Seller" id="Seller" onclick="changeRole(this)" checked>Seller
+    </label>
+                    <label>
+        <input type="radio" name="role" value="Buyer" id="Buyer" onclick="changeRole(this)"> Buyer
+    </label>
+                    <label>
+        <input type="radio" name="role" value="Both" id="Both" onclick="changeRole(this)"> Both
+    </label>
+
+                    <div id="sellerSpecial">
+
+                        <h1>Additional info(only for sellers)</h1>
+                        <input type="text" name="businessName" id="businessName" placeholder="Name of Business">
+                        <input type="text" name="GSTIN" id="GSTIN" placeholder="GSTIN Number" pattern="[a-zA-Z0-9]{8}">
+                        <input type="text" name="location" id="location" placeholder="location">
+
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+                <script>
+                    function changeRole(event) {
+                        if (event.value != "Buyer") {
+                            document.getElementById("sellerSpecial").hidden = false;
+                            document.getElementById("location").required = true;
+                        } else {
+                            document.getElementById("sellerSpecial").hidden = true;
+                            document.getElementById("location").required = false;
+                        }
+                    }
+                </script>
+                <% if(typeof backup!=="undefined"){ %>
+                    <script>
+                        let backup = <%- JSON.stringify(typeof backup?backup:'') %>;
+                        if (backup) {
+
+                            let currType = <%- JSON.stringify(backup.role) %>;
+                            document.getElementById(currType).checked = true;
+                            if (document.form.role.value != "Buyer") {
+                                document.getElementById("sellerSpecial").hidden = false;
+                                document.getElementById("location").required = true;
+                            }
+                            Object.keys(backup).map((key) => {
+                                if (key !== 'role' && key !== 'password')
+                                    document.getElementById(key).value = backup[key];
+                            })
+                        }
+                    </script>
+                    <% } %>
