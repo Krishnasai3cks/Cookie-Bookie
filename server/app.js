@@ -56,8 +56,6 @@ app.use(function (req, res, next) {
   res.locals.user = req.user;
   next();
 });
-import { authenticate } from "./auth.js";
-authenticate(app);
 app.get("/", (req, res) => {
   res.render("index");
 });

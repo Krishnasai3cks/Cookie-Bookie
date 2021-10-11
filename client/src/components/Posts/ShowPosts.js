@@ -73,7 +73,6 @@ const ShowPosts = () => {
         }
       }
     });
-    console.log(posts);
     setFiltersTrue("true");
     setFilteredPosts(posts);
   };
