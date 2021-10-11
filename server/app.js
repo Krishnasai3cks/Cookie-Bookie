@@ -33,15 +33,10 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.static("public"));
 app.use(session(sessionOptions));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
-app.set("views", "views");
-app.set("view engine", "ejs");
-
-app.use(flash());
 
 app.use(function (req, res, next) {
   res.locals.errors = req.flash("errors");
