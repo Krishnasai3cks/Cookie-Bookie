@@ -29,7 +29,6 @@ const App = () => {
           <Route path="/user/login" exact component={Login} />
           <Route path="/user/register" exact component={Register} />
           <Route path="/user/updateProfile" exact component={Update} />
-          <Route path="/user/login" exact component={Login} />
           <Route path="/" exact component={Home} />
         </Switch>
       </CurrentProfileContext.Provider>

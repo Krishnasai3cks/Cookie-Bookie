@@ -44,6 +44,7 @@ const ShowPosts = () => {
     const { elements } = e.target;
     e.preventDefault();
     Object.keys(filters).forEach((filter) => {
+      console.log(elements, filter);
       if (elements[filter].value && elements[filter].value !== "any") {
         if (filter === "bakedTime") {
           console.log(elements[filter].value);
@@ -84,7 +85,7 @@ const ShowPosts = () => {
         <>
           <Toolbar>
             <form onSubmit={handleFilters} style={{ display: "flex" }}>
-              <TextField name="typeO fCookie" type="text" placeholder="type" />
+              <TextField name="typeOfCookie" type="text" placeholder="type" />
               <TextField name="location" type="text" placeholder="location" />
 
               <InputLabel id="demo-simple-select-label">Baked Time</InputLabel>
@@ -120,7 +121,7 @@ const ShowPosts = () => {
             margin={1}
             padding={2}
             spacing={2}
-            style={{ backgroundColor: "rebeccapurple", height: "100vh" }}
+            style={{ backgroundColor: "rebeccapurple", minHeight: "100vh" }}
           >
             {(filtersTrue ? filteredPosts : posts)?.map((post) => {
               return <Post post={post} key={post._id} />;
@@ -132,7 +133,3 @@ const ShowPosts = () => {
   );
 };
 export default ShowPosts;
-/* 
-
-{"_id":"614b2aa557995a9da4d79850","title":"masala dosa","description":"a tasty version of masala dosa ""message":"please eat this ","minAskingPrice":"12","highestBid":"123","biddingEnd":"2021-09-22","location":"hyderabad","egglessOrEgg":"egg","bakedTime":"2021-09-22T13:06:02.640Z","likes":[],"__v":0}
-fullname, username, phone, email, password, nameOfBusiness, GSTIN, location, */

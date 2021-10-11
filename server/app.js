@@ -6,6 +6,7 @@ import express from "express";
 import mongoose from "mongoose";
 import userRoutes from "./routes/user.js";
 import dotenv from "dotenv";
+import { v4 as uuidV4 } from "uuid";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 dotenv.config();
@@ -64,6 +65,10 @@ app.use("/user", userRoutes);
 app.use("/posts", postRoutes);
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
+
+app.get("/join", (req, res) => {
+  res.send({ link: uuidV4() });
+});
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
